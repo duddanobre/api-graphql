@@ -5,8 +5,8 @@ const personResolver = {
         persons(){
             return Person.find();
         },
-        person(name){
-            return Person.findById(name);
+        person(_, { id }){
+            return Person.findById(id);
         },
     }
 };
