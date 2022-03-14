@@ -2,7 +2,7 @@ const { gql } = require("apollo-server");
 
 const query = gql`
     type Query{
-        person(name: String!): Person
+        person(id: ID!): Person
         persons: [Person]
     }
 `;
