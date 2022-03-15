@@ -1,9 +1,9 @@
 import React from 'react';
-import Home from './Components/Home';
+import Routes from './routes';
 
 const App = () => {
   return (
-    <Home />
+    <Routes />
   );
 };
 

@@ -1,6 +1,10 @@
+import React from 'react';
 import { Layout, Card, Image, Input, Space } from 'antd';
 import 'antd/dist/antd.min.css';
 import './styles.css';
+
+import { useNavigate, Link, useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -587,14 +591,35 @@ const data = [
         "greeting": "Hello, Shelley Arnold! You have 3 unread messages."
       },
 ];
+const navigate = useNavigate();
+
+const [person, setPerson] = useState({});
+
+const SearchPerson = (name: String) => {
+  data.map(people => {
+    if(name === people.name){
+      setPerson(people);
+      navigate(`/person/${people.name}`);
+    }else{
+      console.log('droga')
+    }
+    return person;
+  })
+}
 
     return(
     <Layout hasSider>
         <Layout className="site-layout">
         <Header className="site-layout-background" style={{width: '100%' }}>
+          <Link to={'/'}>
             <span style={{fontSize: 25, fontWeight: 'bolder'}}>My Social</span>
+          </Link>
             <Space direction="vertical">
-                <Search placeholder="search" style={{ width: 400, marginLeft: 30, marginTop: 10}} />
+                <Search 
+                  placeholder="search" 
+                  style={{ width: 400, marginLeft: 30, marginTop: 10}} 
+                  onSearch={SearchPerson}
+                />
             </Space>
         </Header>
         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
@@ -603,7 +628,7 @@ const data = [
                     {
                         data.map(i => (
                         <Card bordered={false} style={{ width: 300, borderRadius: 25, marginRight:10, marginLeft: 10 }} key={i._id}>
-                            <Image bwidth={300} style={{height: 250, width: 250}}
+                            <Image width={300} style={{height: 250, width: 250}}
                                 src={i.picture}/>
                             <div>
                                 <p>name: {i.name}</p>

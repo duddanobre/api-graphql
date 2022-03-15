@@ -1,6 +1,9 @@
+import React from 'react';
 import { Layout, Card, Image, Input, Space } from 'antd';
 import 'antd/dist/antd.min.css';
 import './styles.css';
+
+import { Link, useParams } from 'react-router-dom';
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -588,44 +591,40 @@ const data = [
       },
 ];
 
+let params = useParams();
+console.log(params.name)
     return(
     <Layout hasSider>
         <Layout className="site-layout">
         <Header className="site-layout-background" style={{width: '100%' }}>
+          <Link to={'/'}>
             <span style={{fontSize: 25, fontWeight: 'bolder'}}>My Social</span>
+          </Link>
             <Space direction="vertical">
                 <Search placeholder="search" style={{ width: 400, marginLeft: 30, marginTop: 10}} />
             </Space>
         </Header>
         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
             <div style={{ padding: 24, textAlign: 'center' }}>
+              <span>{params.name}</span>
+              <span style={{fontSize: '18px', fontWeight: 'bold', textAlign: 'center'}}>Friends</span>
                 <div className="site-card-border-less-wrapper">
                     {
                         data.map(i => (i.friends.map(f => (
-                            <>
-                            <Image bwidth={300} style={{ height: 250, width: 250 }}
-                                src={i.picture} />
-                            <div>
-                                <p>name: {i.name}</p>
-                                <p>age: {i.age}</p>
-                                <p>eyeColor: {i.eyeColor}</p>
-                                <p>company: {i.company} </p>
-                                <p>email: {i.email}</p>
-                            </div>
-                            <span>Friends</span>
-                            <Card bordered={false} style={{ width: 300, borderRadius: 25, marginRight: 10, marginLeft: 10 }} key={f._id}>
-                                <Image bwidth={300} style={{ height: 250, width: 250 }}
-                                    src={i.picture} />
                                 <div>
-                                    <p>name: {f.name}</p>
-                                    <p>age: {f.age}</p>
-                                    <p>eyeColor: {f.eyeColor}</p>
-                                    <p>company: {f.company} </p>
-                                    <p>email: {f.email}</p>
-                                </div>
-                            </Card>
-                            </>
-                        ))
+                                  <Card bordered={false} style={{ width: 300, borderRadius: 25, marginRight: 10, marginLeft: 10 }} key={f._id}>
+                                      <Image width={300} style={{ height: 250, width: 250 }}
+                                          src={f.picture} />
+                                      <div>
+                                          <p>name: {f.name}</p>
+                                          <p>age: {f.age}</p>
+                                          <p>eyeColor: {f.eyeColor}</p>
+                                          <p>company: {f.company} </p>
+                                          <p>email: {f.email}</p>
+                                      </div>
+                                  </Card>
+                              </div>
+                          ))
                         ))
                     }
                 </div>
