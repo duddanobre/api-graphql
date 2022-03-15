@@ -2,11 +2,21 @@ const Person = require('../models/Person');
 
 const personResolver = {
     Query:{
-        persons(){
-            return Person.find();
+        persons(parent, args, context, info){
+            return Person.find()
+                    .then((result) => {
+                        return result.map(r => ({...r._doc}));
+                    }).catch((err) => {
+                        console.error(err);
+                    });
         },
-        person(_, { id }){
-            return Person.findById(id);
+        person(parent, args, context, info){
+            return Person.findOne({_id: args.id})
+                    .then((data) => {
+                        return {...data._doc}
+                    }).catch((err) => {
+                        console.error(err);
+                    });
         },
     }
 };
