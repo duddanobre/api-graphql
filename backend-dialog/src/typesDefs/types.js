@@ -3,9 +3,9 @@ const {gql} = require('apollo-server');
 const types = gql`
     type Person{
         _id: String
-        index: Number
+        index: Int
         picture: String
-        age: Number
+        age: Int
         eyeColor: String
         name: String
         company: String
@@ -17,9 +17,9 @@ const types = gql`
 
     type Friends{
         _id: String
-        index: Number
+        index: Int
         picture: String
-        age: Number
+        age: Int
         eyeColor: String
         name: String
         company: String
