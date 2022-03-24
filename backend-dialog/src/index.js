@@ -6,7 +6,7 @@ const { ApolloServer } = require("apollo-server");
 const typeDefs = require('./typesDefs');
 const resolvers = require('./resolvers/personResolver');
 
-const db = {
+/*const db = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     pass: process.env.DB_PASS,
@@ -17,13 +17,12 @@ const db = {
  const dbOptions = {
    useNewUrlParser: true,
    useUnifiedTopology: true,
- };
+ }; */
 
- mongoose
+ /*mongoose
    .connect(dbUri, dbOptions)
    .then(() => console.log("Database connected"))
-   .catch((error) => console.log("Databased failed: ", error));
-
+   .catch((error) => console.log("Databased failed: ", error));*/
 const server = new ApolloServer({ typeDefs, resolvers })
 
 server

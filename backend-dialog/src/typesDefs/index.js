@@ -1,4 +1,4 @@
-const query = require("./query");
+const query = require("./query.js");
 const types = require("./types");
 const typeDefs = [query, types];
 
